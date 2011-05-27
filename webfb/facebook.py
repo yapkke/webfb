@@ -1,3 +1,4 @@
+import web
 
 fbAppId = None
 welcomePage = None
@@ -17,12 +18,6 @@ def login_form(loginpage='fb',icon='static/facebook.gif'):
 </form>
 ''' % (loginpage, icon)
 
-class welcome:
-    def GET(self):
-        return '''
-Success!
-'''
-
 class login:
     """Facebook login page
     """
@@ -39,6 +34,7 @@ class login:
       function submitUser(user) {
       var userName = document.getElementById('userName');
       fbLogin.userName.value = user.name;
+      fbLogin.submit();
       }
       
       if (window.location.hash.length == 0) {
@@ -62,8 +58,8 @@ class login:
       document.body.appendChild(script);        
       }
     </script> 
-    <form name="fbLogin" action="%s">
-      <input type=text name=userName>
+    <form method="post" name="fbLogin" action="%s">
+      <input type="hidden" name="userName">
     </form>
   </body> 
 </html>

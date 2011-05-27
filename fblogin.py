@@ -5,10 +5,19 @@ import webfb.facebook as fb
 urls = (
     r'/', 'index',
     r'/fb', 'webfb.facebook.login',
-    r'/welcome', 'webfb.facebook.welcome'
+    r'/welcome', 'welcome'
     )
 
 fb.init(105259509564192)
+
+class welcome:
+    """Welcome page
+    """
+    def POST(self):
+        return '''
+Welcome %s!
+''' % str(web.input()['userName'])
+
 
 class index:
     """Index page
