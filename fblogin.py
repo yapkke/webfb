@@ -4,7 +4,8 @@ import webfb.facebook as fb
 
 urls = (
     r'/', 'index',
-    r'/fb', 'webfb.facebook.login'
+    r'/fb', 'webfb.facebook.login',
+    r'/welcome', 'webfb.facebook.welcome'
     )
 
 fb.init(105259509564192)

@@ -1,24 +1,34 @@
 
 fbAppId = None
+welcomePage = None
 
-def init(appid):
+def init(appid, welcomepage='welcome'):
     global fbAppId
+    global welcomePage
     fbAppId = appid
+    welcomePage = welcomepage
 
-def login_form(loginpage='fb'):
+def login_form(loginpage='fb',icon='static/facebook.gif'):
     """Return login button for facebook login
     """
     return '''
 <form action="%s">
-<input type=image src="static/facebook.gif">
+<input type=image src="%s">
 </form>
-''' % loginpage
+''' % (loginpage, icon)
+
+class welcome:
+    def GET(self):
+        return '''
+Success!
+'''
 
 class login:
     """Facebook login page
     """
     def GET(self):
         global fbAppId
+        global welcomePage
         return '''
 <html> 
   <head> 
@@ -26,11 +36,9 @@ class login:
   </head> 
   <body> 
     <script> 
-      function displayUser(user) {
+      function submitUser(user) {
       var userName = document.getElementById('userName');
-      var greetingText = document.createTextNode('Greetings, '
-      + user.name + '.');
-      userName.appendChild(greetingText);
+      fbLogin.userName.value = user.name;
       }
       
       if (window.location.hash.length == 0) {
@@ -44,7 +52,7 @@ class login:
       } else {
       var accessToken = window.location.hash.substring(1);
       var path = "https://graph.facebook.com/me?";
-      var queryParams = [accessToken, 'callback=displayUser'];
+      var queryParams = [accessToken, 'callback=submitUser'];
       var query = queryParams.join('&');
       var url = path + query;
       
@@ -54,8 +62,10 @@ class login:
       document.body.appendChild(script);        
       }
     </script> 
-    <p id="userName"></p> 
+    <form name="fbLogin" action="%s">
+      <input type=text name=userName>
+    </form>
   </body> 
 </html>
-''' % fbAppId
+''' % (fbAppId, welcomePage)
 
