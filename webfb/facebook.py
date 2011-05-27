@@ -4,6 +4,11 @@ fbAppId = None
 welcomePage = None
 
 def init(appid, welcomepage='welcome'):
+    """Initiate variables for later use
+
+    @author ykk
+    @date May 2011
+    """
     global fbAppId
     global welcomePage
     fbAppId = appid
@@ -11,6 +16,9 @@ def init(appid, welcomepage='welcome'):
 
 def login_form(loginpage='fb',icon='static/facebook.gif'):
     """Return login button for facebook login
+
+    @author ykk
+    @date May 2011
     """
     return '''
 <form action="%s">
@@ -20,6 +28,13 @@ def login_form(loginpage='fb',icon='static/facebook.gif'):
 
 class login:
     """Facebook login page
+
+    This page redirects the page to facebook and allows the username to login.
+    This is done using javascript.  The access token is then processed by 
+    javascript and the user name is returned to the welcome page.
+
+    @author ykk
+    @date May 2011
     """
     def GET(self):
         global fbAppId
