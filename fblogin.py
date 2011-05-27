@@ -7,6 +7,7 @@ urls = (
     r'/fb', 'webfb.facebook.login'
     )
 
+fb.init(105259509564192)
 
 class index:
     """Index page
