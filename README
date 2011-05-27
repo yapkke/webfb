@@ -1,0 +1,5 @@
+webfb stands for web facebook.  This is my quick hack of a webpy compatible library that login using Facebook Connect.
+
+Using webpy and Facebook Connect is quite a challenge.  The Python API does not seem to be officially supported by Facebook. PyFacebook is essentially for Django and the examples on the web (when I tried) is sketchy.  So, I whipped this up.
+
+If you find this useful, go ahead and help yourself.  This software is provided without warranty or liability on part of the authors.
