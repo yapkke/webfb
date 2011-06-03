@@ -53,7 +53,7 @@ class login:
       }
       
       if (window.location.hash.length == 0) {
-      var path = 'https://www.facebook.com/dialog/oauth?';
+      var path = 'http://www.facebook.com/dialog/oauth?';
       var queryParams = ['client_id=' + %s,
       'redirect_uri=' + window.location,
       'response_type=token'];
